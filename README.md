@@ -1,1 +1,2 @@
-# BE_fastkart_ecomm_seller_service
+# BE_fastkart_ecomm
+Backend code repository of FastKart E-commerce.

@@ -3,7 +3,6 @@ package com.fastkart.ecomm.FastKart.Ecomm.interceptor;
 import com.fastkart.ecomm.FastKart.Ecomm.Utils.Utils;
 import com.fastkart.ecomm.FastKart.Ecomm.dto.TokenValidationResponse;
 import com.fastkart.ecomm.FastKart.Ecomm.exception.AuthorizationException;
-import com.fastkart.ecomm.FastKart.Ecomm.service.ValidateJwtToken;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
 
 public class AuthenticationInterceptor implements HandlerInterceptor {
 
@@ -23,8 +21,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Autowired
-    ValidateJwtToken validateJwtToken;
     @Override
     public boolean preHandle(HttpServletRequest requestServlet, HttpServletResponse responseServlet, Object handler) throws Exception
     {

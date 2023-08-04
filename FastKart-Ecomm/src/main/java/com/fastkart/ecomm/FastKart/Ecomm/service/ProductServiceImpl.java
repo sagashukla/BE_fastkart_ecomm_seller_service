@@ -55,7 +55,6 @@ public class ProductServiceImpl implements ProductService {
         return productDetailsRepository.getProductsBySeller(id);
     }
 
-
     private void validateRequest(AddProductRequest request) {
         if(Utils.validateString(request.getName())){
             throw new ProductException("Product name cannot be null or empty");

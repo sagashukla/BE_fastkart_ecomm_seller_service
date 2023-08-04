@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class Bid {
     @Id
     @GeneratedValue
+    @Column(name = "bid_id")
     private Integer id;
 
     @Column(name = "amount")

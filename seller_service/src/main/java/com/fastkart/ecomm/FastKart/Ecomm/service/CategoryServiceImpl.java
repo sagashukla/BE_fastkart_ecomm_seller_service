@@ -17,6 +17,7 @@ public class CategoryServiceImpl implements CategoryService{
     private CategoryRepository categoryRepository;
     @Override
     public List<Category> getCategories() {
+        log.info("Inside CategoryServiceImpl");
         List<Category> categoryList = categoryRepository.findAll();
         log.info("Categories fetched {}", categoryList);
         return categoryList;

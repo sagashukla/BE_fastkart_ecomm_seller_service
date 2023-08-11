@@ -3,6 +3,7 @@ package com.fastkart.ecomm.FastKart.Ecomm.controller;
 
 import com.fastkart.ecomm.FastKart.Ecomm.entity.Category;
 import com.fastkart.ecomm.FastKart.Ecomm.service.CategoryService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +19,16 @@ import java.util.List;
 @Component
 @RequestMapping("/api/v1/category")
 @CrossOrigin
+@Slf4j
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
     @GetMapping
     public ResponseEntity<List<Category>> getCategories(){
+        log.info("Inside category controller");
+        log.info("Endpoint called: /api/v1/category");
+        log.info("Verb: GET");
         return new ResponseEntity<>(categoryService.getCategories(), HttpStatus.OK);
     }
 }

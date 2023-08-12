@@ -13,13 +13,13 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query(
-            value = "SELECT p.name as name, p.description as description, p.created_at as createdAt, u.amount as bidAmount, c.category_name as categoryName FROM fastkart.product as p INNER JOIN fastkart.bid as u on u.bid_id = p.id INNER JOIN fastkart.category as c on c.category_id = p.category_id where seller_id = ?1",
+            value = "SELECT p.id as id, p.name as name, p.description as description, p.created_at as createdAt, COALESCE(MAX(u.amount), 0) as maxBidAmount, c.category_name as categoryName FROM fastkart.product as p LEFT JOIN fastkart.bid as u on u.product_id = p.id INNER JOIN fastkart.category as c on c.category_id = p.category_id where seller_id = ?1 GROUP BY p.id;",
             nativeQuery = true)
     List<ProductInformation> getProductsBySeller(int sellerId);
     Optional<Product> findById(Integer id);
 
     @Query(
-            value = "WITH product_details AS ( SELECT p.id AS id, p.name AS name, p.minimum_bid_amount AS mimimumBidAmount, CONCAT(u.first_name, \" \", u.last_name) AS sellerName, cat.category_name AS categoryName FROM fastkart.product AS p INNER JOIN fastkart.user AS u ON p.seller_id = u.id INNER JOIN fastkart.category AS cat ON cat.category_id = p.category_id WHERE p.id = ?1 ), bid_details AS ( SELECT p.id AS b_product_id, b.amount AS bidAmount, b.created_at AS bidCreatedAt, CONCAT(u.first_name, \" \", u.last_name) AS bidderName FROM fastkart.product AS p INNER JOIN fastkart.bid AS b ON p.id = b.product_id INNER JOIN fastkart.user AS u ON u.id = b.buyer_id WHERE p.id = ?1 ) SELECT pd.id, pd.name, pd.mimimumBidAmount, pd.sellerName, pd.categoryName, COALESCE(bd.bidAmount, 0) AS bidAmount, COALESCE(bd.bidCreatedAt, 0) AS bidCreatedAt, COALESCE(bd.bidderName, 'Unknown') AS bidderName FROM product_details AS pd LEFT JOIN bid_details AS bd ON pd.id = bd.b_product_id",
+            value = "WITH product_details AS ( SELECT p.id AS id, p.name AS name, p.description as description, p.minimum_bid_amount AS mimimumBidAmount, CONCAT(u.first_name, \" \", u.last_name) AS sellerName, cat.category_name AS categoryName FROM fastkart.product AS p INNER JOIN fastkart.user AS u ON p.seller_id = u.id INNER JOIN fastkart.category AS cat ON cat.category_id = p.category_id WHERE p.id = ?1 ), bid_details AS ( SELECT p.id AS b_product_id, b.amount AS bidAmount, b.created_at AS bidCreatedAt, CONCAT(u.first_name, \" \", u.last_name) AS bidderName FROM fastkart.product AS p INNER JOIN fastkart.bid AS b ON p.id = b.product_id INNER JOIN fastkart.user AS u ON u.id = b.buyer_id WHERE p.id = ?1 ) SELECT pd.id, pd.name, pd.mimimumBidAmount, pd.description, pd.sellerName, pd.categoryName, COALESCE(bd.bidAmount, 0) AS bidAmount, COALESCE(bd.bidCreatedAt, 0) AS bidCreatedAt, COALESCE(bd.bidderName, 'Unknown') AS bidderName FROM product_details AS pd LEFT JOIN bid_details AS bd ON pd.id = bd.b_product_id",
             nativeQuery = true)
     List<ProductWithBid> getProductWithBids(int sellerId);
 }

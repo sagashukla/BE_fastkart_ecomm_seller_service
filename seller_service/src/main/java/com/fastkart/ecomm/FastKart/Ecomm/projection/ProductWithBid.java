@@ -4,6 +4,8 @@ import lombok.*;
 
 public interface ProductWithBid {
     Integer getId();
+
+    String getDescription();
     Long getBidCreatedAt();
     float getMimimumBidAmount();
     String getName();

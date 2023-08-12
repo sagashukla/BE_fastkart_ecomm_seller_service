@@ -11,33 +11,40 @@ import lombok.Setter;
 @Setter
 
 public class ProductInformationImpl implements ProductInformation{
+    private Integer id;
     private String name;
     private String description;
     private Long createdAt;
-    private float bidAmount;
+    private float maxBidAmount;
     private String categoryName;
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
     public String getDescription() {
-        return null;
+        return description;
     }
 
     @Override
     public Long getCreatedAt() {
-        return null;
+        return createdAt;
     }
 
     @Override
-    public float getBidAmount() {
-        return 0;
+    public float getMaxBidAmount() {
+        return maxBidAmount;
     }
 
     @Override
     public String getCategoryName() {
-        return null;
+        return categoryName;
     }
 }

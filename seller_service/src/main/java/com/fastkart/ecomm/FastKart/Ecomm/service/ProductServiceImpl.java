@@ -10,9 +10,11 @@ import com.fastkart.ecomm.FastKart.Ecomm.projection.ProductInformation;
 import com.fastkart.ecomm.FastKart.Ecomm.repository.ProductRepository;
 import com.fastkart.ecomm.FastKart.Ecomm.projection.ProductWithBid;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.sql.ast.tree.expression.Collation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -79,6 +81,7 @@ public class ProductServiceImpl implements ProductService {
             throw new ProductException("Wrong seller id");
         }
         List<ProductInformation> productInformationList = productRepository.getProductsBySeller(id);
+        Collections.sort(productInformationList, (p1, p2) -> (p2.getCreatedAt().compareTo(p1.getCreatedAt())));
         log.info("Product information list {}", productInformationList);
         return productInformationList;
     }

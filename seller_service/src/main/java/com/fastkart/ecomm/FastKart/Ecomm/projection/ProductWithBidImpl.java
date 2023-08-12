@@ -10,6 +10,7 @@ import lombok.Data;
 @Builder
 public class ProductWithBidImpl implements ProductWithBid{
     private int id;
+    private String description;
     private Long bidCreatedAt;
     private float minimumBidAmount;
     private String name;
@@ -19,41 +20,46 @@ public class ProductWithBidImpl implements ProductWithBid{
     private String categoryName;
     @Override
     public Integer getId() {
-        return null;
+        return id;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
     }
 
     @Override
     public Long getBidCreatedAt() {
-        return null;
+        return bidCreatedAt;
     }
 
     @Override
     public float getMimimumBidAmount() {
-        return 0;
+        return minimumBidAmount;
     }
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
     public float getBidAmount() {
-        return 0;
+        return bidAmount;
     }
 
     @Override
     public String getSellerName() {
-        return null;
+        return sellerName;
     }
 
     @Override
     public String getBidderName() {
-        return null;
+        return bidderName;
     }
 
     @Override
     public String getCategoryName() {
-        return null;
+        return categoryName;
     }
 }

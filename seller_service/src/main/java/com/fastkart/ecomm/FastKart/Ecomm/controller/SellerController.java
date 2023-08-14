@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static java.util.Objects.isNull;
+
 @RestController
 @Component
 @RequestMapping("/api/v1/seller")
@@ -32,7 +34,7 @@ public class SellerController {
         return productService.addProduct(request);
     }
     @GetMapping("/product")
-    public ResponseEntity<List<ProductWithBid>> getProduct(@RequestParam("id") int id){
+    public ResponseEntity<List<ProductWithBid>> getProduct(@RequestParam(value = "id", required = true) Integer id) {
         log.info("Inside seller controller");
         log.info("Endpoint called: /product");
         log.info("Verb: GET");

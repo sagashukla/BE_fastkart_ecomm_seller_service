@@ -11,6 +11,6 @@ public class AddProductRequest {
     private String name;
     private String description;
     private float minBidAmount;
-    private Integer sellerId;
-    private Integer categoryId;
+    private int sellerId = 0;
+    private int categoryId;
 }

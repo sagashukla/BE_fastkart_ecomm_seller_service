@@ -29,7 +29,7 @@ public class Utils {
     }
 
     public static boolean valiateId(int id){
-        if(id == 0){
+        if(id <= 0){
             return true;
         }
         else{

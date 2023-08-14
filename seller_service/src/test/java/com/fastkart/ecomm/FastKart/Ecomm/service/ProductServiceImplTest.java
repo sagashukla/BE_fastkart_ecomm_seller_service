@@ -104,20 +104,18 @@ class ProductServiceImplTest {
         ProductInformation productInformation = ProductInformationImpl
                 .builder()
                 .createdAt(System.currentTimeMillis())
-                .bidAmount(100f)
                 .categoryName("Automobile")
                 .name("Tata Nexon")
-                .bidAmount(1001f)
+                .maxBidAmount(10f)
                 .description("Tata nexon")
                 .build();
 
         ProductInformation productInformation1 = ProductInformationImpl
                 .builder()
                 .createdAt(System.currentTimeMillis())
-                .bidAmount(100f)
+                .maxBidAmount(100f)
                 .categoryName("Automobile")
                 .name("Tata Nexon")
-                .bidAmount(1001f)
                 .description("Tata nexon")
                 .build();
 

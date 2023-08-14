@@ -95,7 +95,7 @@ class SellerControllerTest {
                 .description("Product")
                 .categoryName("Category")
                 .createdAt(System.currentTimeMillis())
-                .bidAmount(10f)
+                .maxBidAmount(10f)
                 .name("Product")
                 .build();
 
@@ -103,8 +103,8 @@ class SellerControllerTest {
                 .builder()
                 .description("Product")
                 .categoryName("Category")
-                .createdAt(System.currentTimeMillis())
-                .bidAmount(10f)
+                .createdAt(System.currentTimeMillis()).
+                 maxBidAmount(10f)
                 .name("Product")
                 .build();
 

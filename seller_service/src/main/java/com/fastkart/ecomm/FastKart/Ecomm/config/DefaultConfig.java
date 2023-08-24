@@ -17,15 +17,9 @@ public class DefaultConfig implements WebMvcConfigurer {
 
     @Autowired
     private AuthenticationInterceptor authenticationInterceptor;
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        System.out.println("inside addCorsMappings");
-    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        System.out.println("addInterceptors");
-        registry.addInterceptor(authenticationInterceptor).addPathPatterns("/**");
+        registry.addInterceptor(authenticationInterceptor).addPathPatterns("/api/v1/seller/**");
     }
-
 }
